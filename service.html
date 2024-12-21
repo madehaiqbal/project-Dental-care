@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>High-Quality Responsive Navbar</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+       
+       
+    }
+
+    
+
+    
+    header {
+        background-color: #34495e; /* Fallback color */
+        background-image: linear-gradient(to right, #3498db, #2ecc71); /* Blue to green gradient */
+        color: white;
+        padding: 10px 20px;
+        border: 4px solid;
+        border-image: linear-gradient(to right, #3498db, #2ecc71); /* Blue to green gradient border */
+        border-image-slice: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo img {
+        width: 70px;
+        margin-right: 10px;
+        background: transparent;
+    }
+
+    .middle-logo img {
+        width: 200px; /* Adjust width as needed */
+        background: transparent;
+    }
+
+    .search-box {
+        position: relative;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-links li {
+        margin: 0 10px;
+        position: relative;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    .nav-links a::before,
+    .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(to right, #00bbff, #A6CE39);
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a::before {
+        transform: translateX(-50%);
+    }
+
+    .nav-links a::after {
+        transform: translateX(-50%) scaleY(3);
+        opacity: 0.5;
+    }
+
+    .nav-links a:hover::before,
+    .nav-links a:hover::after {
+        width: 100%;
+        left: 0;
+        transform: translateX(0);
+    }
+
+    .nav-links a:hover::after {
+        transform: translateX(0) scaleY(1);
+    }
+
+    .auth-buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    .auth-buttons i {
+        font-size: 24px;
+        margin-left: 20px;
+        cursor: pointer;
+        transition: color 0.3s;
+        color:  #ffffff;
+    }
+
+    .auth-buttons i:hover {
+        background: linear-gradient(180deg, #00bbff, #A6CE39);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: background 0.3s ease;
+    }
+
+    .auth-buttons .signup-icon {
+        margin-left: 50;
+        margin-right: 70px;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1001;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        border-radius: 10px;
+        animation: modalopen 0.5s;
+    }
+
+    @keyframes modalopen {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-content h2 {
+        margin: 0 0 15px;
+    }
+
+    .modal-content form input {
+        width: calc(100% - 22px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .modal-content form button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #333;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .modal-content form button:hover {
+        background-color: #555;
+    }
+
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+    }
+
+    .menu-toggle span {
+        background-color: white;
+        height: 3px;
+        width: 25px;
+        margin: 4px;
+        transition: all 0.3s;
+    }
+
+    @media (max-width: 768px) {
+        .search-box input[type="text"] {
+            width: 150px;
+        }
+
+        .auth-buttons i {
+            font-size: 20px;
+            
+        }
+
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            left: 20;
+            background-color: rgba(174, 168, 168, 0.9); /* Making the background slightly transparent */
+            border: none;
+            border-radius: 0;
+        }
+
+        .nav-links li {
+            margin: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav-links li a {
+            display: block;
+            width: 100%;
+            padding: 15px 0;
+        }
+
+        .nav-links.active {
+            display: flex;
+        }
+
+        .menu-toggle {
+            display: flex;
+        }
+    }
+
+    @media (max-width: 480px) {
+        header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .search-box input[type="text"] {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            justify-content: flex-end;
+            width: 100%;
+        }
+    }
+    
+    .searchbar {
+        font-size: 14px;
+        font-family: arial, sans-serif;
+        color: #202124;
+        display: flex;
+        z-index: 3;
+        height: 44px;
+        background: white;
+        border: 1px solid #dfe1e5;
+        box-shadow: none;
+        border-radius: 24px;
+        
+        width: auto;
+        max-width: 224px;
+        margin-right: 170px;
+    }
+    
+    .searchbar:hover {
+        box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+        border-color: rgba(223,225,229,0);
+    }
+    
+    .searchbar-wrapper {
+        flex: 1;
+        display: flex;
+        padding: 5px 8px 0 14px;
+    }
+    
+    .searchbar-left {
+        font-size: 14px;
+        font-family: arial, sans-serif;
+        color: #202124;
+        display: flex;
+        align-items: center;
+        padding-right: 13px;
+        margin-top: -5px;
+    }
+    
+    .search-icon-wrapper {
+        margin: auto;
+    }
+    
+    .search-icon {
+        margin-top: 3px;
+        color: #9aa0a6;
+        height: 20px;
+        line-height: 20px;
+        width: 20px;
+    }
+    
+    .searchbar-icon {
+        display: inline-block;
+        fill: currentColor;
+        height: 24px;
+        line-height: 24px;
+        position: relative;
+        width: 24px;
+    }
+    
+    .searchbar-center {
+        display: flex;
+        flex: 1;
+        flex-wrap: wrap;
+    }
+    
+    .searchbar-input-spacer {
+        color: transparent;
+        flex: 100%;
+        white-space: nowrap;
+        width: 1px;
+    }
+    
+    .searchbar-input-wrapper {
+        flex: 1 1 0;
+        -webkit-box-flex: 1;
+        display: flex;
+        margin: 0;
+        min-width: 0;
+        padding: 8px 0;
+        width: 100%;
+    }
+    
+    .searchbar-input {
+        background: none;
+        border: none;
+        color: rgba(0,0,0,.87);
+        font-size: 16px;
+        height: 34px;
+        margin-top: -5px;
+        outline: none;
+        padding: 0;
+        width: 100%;
+    }
+    
+    .searchbar-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        padding-right: 8px;
+    }
+    
+    .voice-search {
+        height: 24px;
+        line-height: 24px;
+        width: 24px;
+        color: green; /* Changed voice search icon color to green */
+    }
+
+    :root{
+        --primery-color: #fd562a ;
+        --secondary-color: rgba(255,255,255,.4);
+        
+    }
+    #service-section{
+        min-height: 700px;
+        width: 100%;
+        background: #ffffff;
+        /* change background with image */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+    }
+
+    #service-section h2{
+        color: #000000;
+        font-size: 2rem;
+        margin-bottom: 20px;
+        position: relative;
+        text-transform: uppercase;
+    }
+    #service-section h2::after{
+        position: absolute;
+        content: " ";
+        top: 8px;
+        left: -30px;
+        height: 50;
+        width: 50;
+        border-top: 20px solid transparent;
+        border-left: 20px solid var(--primary-color);
+    }
+
+    #service-section h2::before{
+        position: absolute;
+        content: " ";
+        top: 8px;
+        right: -30px;
+        height: 0;
+        width: 0;
+        border-top: 20px solid transparent;
+        border-right: 20px solid var(--primary-color);
+    }
+
+    #service-section #peragraph{
+        width: 45%;
+        font-size: 1rem;
+        color: rgb(54, 213, 160);
+        text-align: center;
+        line-height: 1.5rem;
+        white-space: 1px;
+        margin-bottom: 40px;
+    }
+    .cards{
+        display: flex ;
+        grid-template-columns: repeat(3,1fr);
+        gap: 30px;
+        z-index: 9;
+        margin-top: 20px;
+
+    }
+    .cards .card{
+        min-height: 350px;
+        width: 450px;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        padding: 0 8%;
+        background: rgb(0, 195, 255);
+        position: relative;
+        border-radius: 10px;
+    }
+    .cards .card::before{
+        position: absolute;
+        content: "";
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        border-radius: 10px;
+        background-color: rgb(54, 213, 160);
+        /* transform: rotate(10deg); */
+        transition: .6s;
+        transform: rotate(0deg);
+        z-index: -1;
+
+    }
+     .cards .card:hover.card::before{
+        transform: rotate(10deg);
+     }
+     .cards .card i{
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-top: 40px;
+        margin-bottom: 10px;
+     }
+
+     .cards .card h3{
+        font-size:1.8rem ;
+        color: #fff;
+        margin-bottom: 10px;
+     }
+     .cards .card .content p{
+        color: white;
+        font-size: 1.05rem;
+        margin-bottom: 20px;
+        font-weight: 500;
+     }
+
+     @media(max-width:1100px){
+        #service-section h2{
+            margin-top: 30px;
+        }
+        .cards{
+            grid-template-columns: repeat(1,1fr);
+        }
+        #service-section #peragraph{
+            width: 80%;
+        }
+     }
+
+     @media(max-width:900px){
+        .cards .card{
+            height: 300px;
+            width: 400px;
+            margin: 20px 0;
+        }
+     }
+
+     @keyframes tada {
+        from {
+            transform: scale3d(1, 1, 1);
+        }
+        10%, 20% {
+            transform: scale3d(0.9, 0.9, 0.9) rotate(-3deg);
+        }
+        30%, 50%, 70%, 90% {
+            transform: scale3d(1.1, 1.1, 1.1) rotate(3deg);
+        }
+        40%, 60%, 80% {
+            transform: scale3d(1.1, 1.1, 1.1) rotate(-3deg);
+        }
+        to {
+            transform: scale3d(1, 1, 1);
+        }
+    }
+
+     h2:hover {
+        animation: tada 1s;
+        cursor: default;
+    }
+
+
+
+
+    .cards {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+gap: 30px; /* Adds 30px gap between cards */
+z-index: 9;
+margin-top: 20px;
+}
+
+.cards .card {
+padding: 20px; /* Add padding inside each card for spacing */
+}
+
+@media(max-width: 1100px) {
+.cards {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media(max-width: 900px) {
+.cards {
+    grid-template-columns: repeat(1, 1fr);
+}
+}
+
+@media(max-width: 900px) {
+.cards .card {
+    height: 300px;
+    width: 400px;
+    margin: 20px 0;
+}
+}
+
+@media (max-width: 768px) {
+    /* Adjustments for Service Section */
+    #service-section {
+        padding: 20px;
+        text-align: center;
+    }
+    
+    #service-section h2 {
+        font-size: 1.5rem;
+    }
+
+    #service-section #peragraph {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cards .card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .cards .card img {
+        width: 30px;
+        margin-top: 20px;
+    }
+
+    .cards .card .content {
+        padding: 10px;
+    }
+
+    .cards .card h3 {
+        font-size: 1.2rem;
+    }
+
+    .cards .card .content p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cards .card {
+        min-height: auto;
+        width: 100%;
+    }
+}
+
+.lastpara{
+
+    color: rgb(54, 213, 160);
+    font-size: 2rem;
+    position: relative;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 1.5rem;
+    white-space: 1px;
+    margin-bottom: 40px;
+    margin-top: 15px;
+}
+
+footer {
+    background-color: rgba(249, 243, 243, 0.9); /* Making the footer background slightly transparent */
+    color: rgb(11, 10, 10);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 4px solid;
+    border-image: linear-gradient(to right, #3498db, #2ecc71); /* blue to green gradient border */
+    border-image-slice: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+}
+
+.footer-section h3 {
+    border-bottom: 2px solid #3498db; /* blue underline for section titles */
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.footer-section p, .footer-section a {
+    color: rgb(15, 15, 15);
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons a {
+    color: rgb(7, 7, 7);
+    margin: 0 10px;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #aaa;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.contact-info i {
+    margin-right: 10px;
+}
+
+
+button {
+    padding: 15px 30px;
+    background-color:rgb(54, 213, 160); /* Change the background color here */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+button:hover{
+    background-color: white ;
+    color:  rgb(179, 155, 155) ;
+
+}
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .popup-content h2 {
+    margin-top: 0;
+  }
+  
+  .popup-content .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .popup-content .close:hover,
+  .popup-content .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .popup-content form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup-content form label {
+    margin-top: 10px;
+  }
+  
+  .popup-content form input,
+  .popup-content form textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  .popup-content form button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .popup-content form button:hover {
+    background-color: #555;
+  }
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-section {
+        margin: 10px 0;
+    }
+}
+
+
+
+    
+</style>
+</head>
+<body>
+<div class="background"></div>
+<div class="content">
+<header>
+    <div class="logo-container">
+        <div class="logo">
+            <img src="Tooth-dental-clinic-logo-transparent-on-background-1 - Copy.png" alt="Logo">
+        </div>
+        <div class="middle-logo">
+            <img src="IMG-20240623-WA0007-removebg-preview (3).png" alt="Middle Logo">
+        </div>
+    </div>
+    <nav>
+        <div class="search-box">
+            <form class="searchbar">
+                <div class="searchbar-wrapper">
+                    <div class="searchbar-left">
+                        <span class="search-icon-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                        </span>
+                    </div>
+                    <div class="searchbar-center">
+                        <div class="searchbar-input-spacer"></div>
+                        <input class="searchbar-input" type="text" placeholder="Search">
+                    </div>
+                </div>
+                <div class="searchbar-right">
+                    <span class="voice-search">
+                        <i class="fas fa-microphone"></i>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <ul class="nav-links">
+            <li><a href="homeloder.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="#" id="contactLink">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <i class="fas fa-sign-in-alt login-icon" id="loginBtn"></i>
+            <i class="fas fa-user-plus signup-icon" id="signupBtn"></i>
+        </div>
+        <div class="menu-toggle" id="menu-btn"><i class="fa-solid fa-bars"></i></div>
+    </nav>
+</header>
+</div>
+
+<!-- The Modal for Login -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="loginClose">&times;</span>
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<!-- The Modal for Signup -->
+<div id="signupModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="signupClose">&times;</span>
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</div>
+
+<div id="contactPopup" class="popup">
+    <div class="popup-content">
+      <span class="close1">&times;</span>
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+<div class="container">
+    <div id="service-section">
+        <h2>service</h2>
+        <p id="peragraph">Unhappy with your smile? Dentists have an array of tools and techniques at their disposal for improving the appearance of your smile. dental servicesIsaacson Gentle Dentistry, which is located in White Bear Lake, MN, offers a complete range of dental services. Dr. Daniel Isaacson and Dr. Mike Weisbrod are some of the finest dentists in White Bear Lake, MN. Here are twelve common dental services that you should know about. </p>
+        <div class="cards">
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Dental Bonding</h3>
+                    <p>Dental bonding is a technique used to correct imperfections with your teeth to give you a better-looking smile.</p>
+                    <p>Bonding is used to repair chipped teeth, decayed teeth, and cracked teeth.
+                        Bonding involves applying a tooth-colored resin material to the teeth and hardening it with a light. This bonds the material to the teeth to improve a person's smile.</p>
+                <div class="btn" id="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                    </div>
+            </div>
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Dental Crowns</h3>
+                    <p>A dental crown is a dental prosthesis which replaces the visible part of a tooth. A dental crown functions to strengthen teeth, restore their original shape, and improve their appearance.</p>
+                    <p>Dental crowns are also used to hold dental bridges in place and cover dental implants.</p>
+                    <div class="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Bridgework</h3>
+                    <p>A dental bridge is a structure between two dental crowns to fill the gap between missing teeth. A bridge can be supported by your teeth, implants, or a combination of teeth and implants.</p>
+                    <p>A dental bridge can restore your smile, improve your appearance, and take years off your look. Who doesn't want to look better- or younger?</p>
+                    <div class="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Cosmetic Fillings</h3>
+                    <p>Cosmetic fillings, or tooth- colored fillings, are made of composite resin and glass particles. They are cemented onto the existing teeth using a bonding agent.</p>
+                    <p>Cosmetic fillings can improve the appearance of your smile. Unlike silver-colored fillings, cosmetic fillings look just like your natural teeth. </p>
+                    <div class="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Invisalign</h3>
+                    <p>Crooked smile? Invisalign is the best way to straighten your smile without interfering with your day-to-day life. Invisalign gradually moves your teeth using a series of custom-fitted, removable aligners.</p>
+                    <p>Invisalign aligners are nearly invisible and very comfortable to wear.</p>
+                    <div class="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Dental Veneers</h3>
+                    <p>Many people are discovering the benefits of veneers. Veneers are thin coverings that are placed over the front part of the teeth.</p>
+                    <p>Veneers are placed on teeth that are crooked, poorly shaped, or severely discolored. They may also be used to lighten teeth that are yellow or have a gray cast.
+                    </p>
+                    <div class="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Teeth Cleanings</h3>
+                    <p>You should visit the dentist every six months for teeth cleanings. Tartar is a hard buildup of plaque that forms on the teeth.</p>
+                    <p>Tartar forms below and above the gum line. The only way to remove tartar is to see a dentist for a professional teeth cleaning. Regular teeth cleanings are important to maintaining healthy teeth and gums.
+                    </p>
+                    <div class="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                </div>
+            </div>
+            <div class="card">
+                <img class="i" width="50px" src="Tooth-dental-clinic-logo-transparent-on-background-1.png" alt="">
+                <div class="content">
+                    <h3>Dentures</h3>
+                    <p>Have you lost most or all of your teeth? Dentures are removable appliances that can replace missing teeth. A complete denture is used when all of the patient's teeth are missing.</p>
+                    <p>A partial denture is used when only some of the teeth are missing. Today's dentures are natural looking and more comfortable than ever.
+                    </p>
+                    <div class="btn"><a href="appoint.html"><button>Book Now</button></a></div>
+                </div>
+            </div>
+        </div>
+        <p class="lastpara">Your smile is part of your personality. It defines you.
+        <br>That’s why it’s so important to take good care of your teeth and gums.
+        <br>Don't wait another minute- call Isaacson Gentle Dentistry at 651-762-7677 now to schedule an <br>appointment in White Bear Lake, MN. We believe that everyone deserves a healthy, beautiful smile!</p>
+        
+    </div>
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 123 Street Name, City, Country</p>
+                <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> example@example.com</p>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Our Location</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Find us on Google Maps</p>
+            <a href="https://www.google.com/maps" target="_blank"><i class="fas fa-map-marked-alt"></i> View Map</a>
+        </div>
+    </div>
+    
+</footer>
+
+</body>
+</html>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const loginClose = document.getElementById('loginClose');
+        const signupClose = document.getElementById('signupClose');
+        const navLinks = document.querySelector('.nav-links');
+        const menuToggle = document.querySelector('.menu-toggle');
+
+        loginBtn.onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        signupBtn.onclick = function() {
+            signupModal.style.display = "block";
+        }
+
+        loginClose.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        signupClose.onclick = function() {
+            signupModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == signupModal) {
+                signupModal.style.display = "none";
+            }
+        }
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    });
+
+    var popup = document.getElementById("contactPopup");
+
+// Get the link that opens the popup
+var contactLink = document.getElementById("contactLink");
+
+// Get the <span> element that closes the popup
+var closeBtn = document.getElementsByClassName("close1")[0];
+
+// When the user clicks on the contact link, open the popup
+contactLink.onclick = function(event) {
+  event.preventDefault();
+  popup.style.display = "flex";
+}
+
+// When the user clicks on <span> (x), close the popup
+closeBtn.onclick = function() {
+  popup.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the popup, close it
+window.onclick = function(event) {
+  if (event.target == popup) {
+    popup.style.display = "none";
+  }
+}
+
+// Handle form submission
+document.getElementById("contactForm").onsubmit = function(event) {
+  event.preventDefault();
+  alert("Form submitted!");
+  popup.style.display = "none";
+}
+</script>
+</body>

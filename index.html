@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+  
+    <style>
+        
+
+        :root {
+            --blue: #00b8b8;
+            --black: #333;
+            --white: #fff;
+            --light-color: #666;
+            --light-bg: #eee;
+            --border: 2rem solid rgba(0, 0, 0, .1);
+            --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+        }
+
+
+        * {
+            font-family: "Lato", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            text-decoration: none !important;
+            text-transform: capitalize;
+            height: auto;
+        }
+
+
+        html {
+            font-size: 62.5%;
+
+            scroll-behavior: smooth;
+           
+        }
+
+        section {
+            padding: 7rem 2rem;
+        }
+
+        header {
+            width: 100%;
+            background-color: rgba(91, 81, 81, 0);
+            /* Making the header background slightly transparent */
+            color: white;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            border: 4px solid;
+            border-image: linear-gradient(to right, #3498db, #2ecc71);
+            /* blue to green gradient border */
+            border-image-slice: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #34495e;
+            /* Fallback color */
+            background-image: linear-gradient(to right, #3498db, #2ecc71);
+            /* Blue to green gradient */
+            color: white;
+            padding: 10px 20px;
+            border: 4px solid;
+            border-image: linear-gradient(to right, #3498db, #2ecc71);
+            /* Blue to green gradient border */
+            border-image-slice: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 70px;
+            margin-right: 10px;
+            background: transparent;
+        }
+
+        .middle-logo img {
+            width: 200px;
+            /* Adjust width as needed */
+            background: transparent;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 10px;
+            position: relative;
+        }
+
+        #menu-btn {
+            font-size: 2.5rem;
+            color: var(--black);
+            cursor: pointer;
+            display: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 10px;
+            position: relative;
+            transition: color 0.3s;
+            font-size: 2rem;
+        }
+
+        .nav-links a::before,
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(to right, #00bbff, #A6CE39);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::before {
+            transform: translateX(-50%);
+        }
+
+        .nav-links a::after {
+            transform: translateX(-50%) scaleY(3);
+            opacity: 0.5;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+            transform: translateX(0);
+        }
+
+        .nav-links a:hover::after {
+            transform: translateX(0) scaleY(1);
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-buttons i {
+            font-size: 24px;
+            margin-left: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+            color: #ffffff;
+        }
+
+        .auth-buttons i:hover {
+            background: linear-gradient(180deg, #00bbff, #A6CE39);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .auth-buttons .signup-icon {
+            margin-left: 50;
+            margin-right: 70px;
+        }
+
+        .searchbar {
+            font-size: 14px;
+            font-family: arial, sans-serif;
+            color: #202124;
+            display: flex;
+            z-index: 3;
+            height: 44px;
+            background: white;
+            border: 1px solid #dfe1e5;
+            box-shadow: none;
+            border-radius: 24px;
+
+            width: auto;
+            max-width: 224px;
+            margin-right: 170px;
+        }
+
+        .searchbar:hover {
+            box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+            border-color: rgba(223, 225, 229, 0);
+        }
+
+        .searchbar-wrapper {
+            flex: 1;
+            display: flex;
+            padding: 5px 8px 0 14px;
+        }
+
+        .searchbar-left {
+            font-size: 14px;
+            font-family: arial, sans-serif;
+            color: #202124;
+            display: flex;
+            align-items: center;
+            padding-right: 13px;
+            margin-top: -5px;
+        }
+
+        .search-icon-wrapper {
+            margin: auto;
+        }
+
+        .search-icon {
+            margin-top: 3px;
+            color: #9aa0a6;
+            height: 20px;
+            line-height: 20px;
+            width: 20px;
+        }
+
+        .searchbar-icon {
+            display: inline-block;
+            fill: currentColor;
+            height: 24px;
+            line-height: 24px;
+            position: relative;
+            width: 24px;
+        }
+
+        .searchbar-center {
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+        }
+
+        .searchbar-input-spacer {
+            color: transparent;
+            flex: 100%;
+            white-space: nowrap;
+            width: 1px;
+        }
+
+        .searchbar-input-wrapper {
+            flex: 1 1 0;
+            -webkit-box-flex: 1;
+            display: flex;
+            margin: 0;
+            min-width: 0;
+            padding: 8px 0;
+            width: 100%;
+        }
+
+        .searchbar-input {
+            background: none;
+            border: none;
+            color: rgba(0, 0, 0, .87);
+            font-size: 16px;
+            height: 34px;
+            margin-top: -5px;
+            outline: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .searchbar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            padding-right: 8px;
+        }
+
+        .voice-search {
+            height: 24px;
+            line-height: 24px;
+            width: 24px;
+            color: green;
+            /* Changed voice search icon color to green */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            animation: modalopen 0.5s;
+        }
+
+
+
+        .home {
+            background: url('dentist-dpc-99990359.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+            margin-top: 30px;
+        }
+
+        .home .content {
+            width: 55rem;
+            padding: 2rem;
+        }
+
+        .home .content h3 {
+            font-size: 6rem;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .home .content p {
+            line-height: 2;
+            font-size: 1.5rem;
+            color: var(--light-color);
+            padding: 1rem 0;
+        }
+
+        .about .row {
+            min-height: 50vh;
+        }
+
+        .about .content span {
+            font-size: 2rem;
+            color: var(--blue);
+        }
+
+        .about .content h3 {
+            font-size: 3rem;
+            color: var(--black);
+            margin-top: 1rem;
+        }
+
+        .about .content p {
+            padding: 1rem 0;
+            font-size: 1.4rem;
+            color: var(--light-color);
+            line-height: 2;
+        }
+
+        .service {
+            text-align: center;
+            background-color: rgb(221, 219, 219);
+        }
+
+        .service .heading {
+            font-size: 5rem;
+            font-weight: bolder;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 3rem;
+        }
+
+        .service .box-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .service .box {
+            background: var(--white);
+            border-radius: .5rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .service .box img {
+            height: 10rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service .box h3 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .service .box p {
+            font-size: 1.4rem;
+            color: var(--light-color);
+            line-height: 2;
+        }
+
+        .process {
+            text-align: center;
+            background-color: var(--light-bg);
+        }
+
+        .process .heading {
+            font-size: 5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 3rem;
+        }
+
+        .process .box-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .process .box {
+            background-color: var(--blue);
+            padding: 2rem;
+            border-radius: .5rem;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .process .box img {
+            height: 20rem;
+            margin: 1rem 0;
+        }
+
+        .process .box h3 {
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .process .box p {
+            font-size: 1.5rem;
+            color: var(--white);
+            line-height: 2;
+        }
+
+
+        /* General Page Styling */
+
+
+        /* Main Content Styling */
+        .main-content {
+            flex: 1;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(249, 243, 243, 0.9);
+            /* Slightly transparent background */
+            color: rgb(11, 10, 10);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 4px solid;
+            border-image: linear-gradient(to right, #3498db, #2ecc71);
+            /* Blue to green gradient border */
+            border-image-slice: 1;
+            position: relative;
+            z-index: 2;
+
+
+
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+
+        .footer-section h3 {
+            border-bottom: 2px solid #3498db;
+            /* Blue underline for section titles */
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgb(15, 15, 15);
+            text-decoration: none;
+            margin: 5px 0;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .social-icons a {
+            color: rgb(7, 7, 7);
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #aaa;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .video-grid1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+
+        }
+
+        .video-grid2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+
+        }
+
+        .video-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            overflow: hidden;
+            width: calc(25% - 20px);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: scale(1.05);
+        }
+
+        video {
+            width: 340px;
+            height: auto;
+            display: block;
+
+
+
+
+        }
+
+        .description {
+            padding: 15px;
+
+        }
+
+        .description h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .description p {
+            margin: 10px 0 0;
+            font-size: 1em;
+            color: #777;
+        }
+
+        .satisfied-clients {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #fff;
+        }
+
+        .satisfied-clients h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .client-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .client-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .client-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .client-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 20%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+
+
+        .client-message {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .client-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .rating {
+            font-size: 1.2em;
+            color: #f39c12;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rating span {
+            color: #f39c12;
+        }
+
+        .guidence {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #ece5e5;
+
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+        }
+
+        .popup-content .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .popup-content .close:hover,
+        .popup-content .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .popup-content form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .popup-content form label {
+            margin-top: 10px;
+        }
+
+        .popup-content form input,
+        .popup-content form textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+        }
+
+        .popup-content form button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .popup-content form button:hover {
+            background-color: #555;
+        }
+        body.loading {
+            overflow: hidden;
+            
+            
+        }
+
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+          
+        }
+
+        .loader.hidden {
+            display: none;
+        }
+        
+      
+
+
+        
+        .circle {
+            fill: url(#gradient);
+        }
+
+        .circle-one {
+            opacity: 0;
+        }
+
+        .svg-stroke {
+            fill: transparent;
+            stroke-dasharray: 46.82, 93.64;
+            stroke-dashoffset: 46.82;
+            stroke: url(#gradient);
+            opacity: 1;
+        }
+
+        .svg-wrap .svg-stroke {
+            animation: stroke-start 1.6s linear, stroke-end 1.6s 0.8s linear infinite;
+        }
+
+        .svg-wrap .circle-one {
+            animation: dot-one 0s 0.8s, move-dot 1.6s 0.8s linear infinite;
+        }
+
+        .svg-wrap .circle-two,
+        .svg-wrap .circle-three {
+            animation: move-dot 1.6s 0.8s linear infinite;
+        }
+
+        
+
+        @keyframes dot-one {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes stroke-start {
+            50% {
+                stroke-dashoffset: 46.82;
+            }
+
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes stroke-end {
+            50% {
+                stroke-dasharray: 46.82, 93.64;
+                stroke-dashoffset: 0;
+                transform: translateX(0);
+            }
+
+            100% {
+                stroke-dasharray: 0, 93.64;
+                stroke-dashoffset: -46.82;
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes move-dot {
+            50% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(10px);
+            }
+        }
+
+       
+
+
+
+
+
+        @media (max-width: 991px) {
+            .header .link-btn {
+                display: none;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .service .box-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .header {
+                position: relative;
+            }
+
+            #menu-btn {
+                display: inline-block;
+                transition: .2s linear;
+            }
+
+            #menu-btn.fa-times {
+                transform: rotate(180deg);
+            }
+
+            .header .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                padding: 1em 0;
+                align-items: center;
+                flex-flow: column;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: .2s linear;
+                background-color: rgba(174, 168, 168, 0.9);
+                border: none;
+                border-radius: 0;
+            }
+
+            .header .nav.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+
+            .header .nav a {
+                margin: 1rem 0;
+                font-size: 2rem;
+                width: 100%;
+                padding: 15px;
+                text-align: center;
+            }
+
+            .home {
+                background-position: left;
+            }
+
+            .home .content {
+                width: auto;
+            }
+
+            .service .box-container,
+            .process .box-container,
+            .guidence {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box input[type="text"] {
+                width: 100%;
+            }
+
+            .auth-buttons i {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #275584;
+                border: none;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 15px;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .auth-buttons {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .menu-toggle.active+.nav-links {
+                display: flex;
+            }
+
+            .nav-links.active .auth-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .nav-links.active .auth-buttons i {
+                margin: 10px 0;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%;
+            }
+
+            .home .content h3 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-box input[type="text"] {
+                width: 100%;
+            }
+
+            .auth-buttons {
+                justify-content: flex-end;
+                width: 100%;
+            }
+        }
+
+        @keyframes modalopen {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .close {
+            color: #b14343;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            margin: 0 0 15px;
+        }
+
+        .modal-content form input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-content form button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .modal-content form button:hover {
+            background-color: #555;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            font-size: 40px;
+        }
+
+       
+        .close1{
+            font-size: 40px;
+        }
+        .menu-tooggle i{
+            font-size: 40px;
+
+        }
+        
+
+    </style>
+</head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Care</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="loading">
+    <div class="loader">
+        <svg class="svg-wrap" viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <!-- Gradient definition -->
+            <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="50%" style="stop-color:rgb(31, 150, 228);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgb(57, 222, 57);stop-opacity:1" />
+                </linearGradient>
+            </defs>
+            <circle stroke-linecap="round" stroke-width="2" class="svg-stroke" cy="25" cx="50" r="15"></circle>
+            <circle class="circle circle-one" cy="25" cx="35" r="1"></circle>
+            <circle class="circle circle-two" cy="25" cx="45" r="1"></circle>
+            <circle class="circle circle-three" cy="25" cx="55" r="1"></circle>
+        </svg>
+
+    </div>
+   
+
+           
+
+       
+    
+   
+            <div class="content">
+                <header>
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="Tooth-dental-clinic-logo-transparent-on-background-1 - Copy.png" alt="Logo">
+                        </div>
+                        <div class="middle-logo">
+                            <img src="IMG-20240623-WA0007-removebg-preview (3).png" alt="Middle Logo">
+                        </div>
+                    </div>
+                    <nav>
+                        <div class="search-box">
+                            <form class="searchbar">
+                                <div class="searchbar-wrapper">
+                                    <div class="searchbar-left">
+                                        <span class="search-icon-wrapper">
+                                            <i class="fas fa-search search-icon"></i>
+                                        </span>
+                                    </div>
+                                    <div class="searchbar-center">
+                                        <div class="searchbar-input-spacer"></div>
+                                        <input class="searchbar-input" type="text" placeholder="Search">
+                                    </div>
+                                </div>
+                                <div class="searchbar-right">
+                                    <span class="voice-search">
+                                        <i class="fas fa-microphone"></i>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="nav-links">
+                            <li><a href="homeloder.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li><a href="service.html">Services</a></li>
+                            <li><a href="#" id="contactLink">Contact</a></li>
+                        </ul>
+                        <div class="auth-buttons">
+                            <i class="fas fa-sign-in-alt login-icon" id="loginBtn"></i>
+                            <i class="fas fa-user-plus signup-icon" id="signupBtn"></i>
+                            <div id="menu-btn" class="fas fa-bars ms-3"></div>
+                        </div>
+                        <div class="menu-toggle" id="menu-btn"><i class="fa-solid fa-bars"></i></div> 
+                       
+                        </div>
+                    </nav>
+                </header>
+            </div>
+
+            <!-- The Modal for Login -->
+            <div id="loginModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="loginClose">&times;</span>
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <input type="email" placeholder="Email" required>
+                        <input type="password" placeholder="Password" required>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- The Modal for Signup -->
+            <div id="signupModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" id="signupClose">&times;</span>
+                    <h2>Sign Up</h2>
+                    <form id="signupForm">
+                        <input type="email" placeholder="Email" required>
+                        <input type="password" placeholder="Password" required>
+                        <input type="password" placeholder="Confirm Password" required>
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="contactPopup" class="popup">
+                <div class="popup-content">
+                    <span class="close1">&times;</span>
+                    <h2>Contact Us</h2>
+                    <form id="contactForm">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" required></textarea>
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <section class="home" id="home">
+                <div class="container">
+                    <div class="row min-vh-100 align-items-center">
+                        <div class="content text-center text-md-left">
+                            <h3>Let us brighten your smile</h3>
+                            <p>Our dentist is incredibly skilled and compassionate, ensuring you receive the best
+                                possible care.</p>
+                            <a href="appoint.html" class="link-btn">Make Appointment</a>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about" id="about">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 min-vh-90 image">
+                            <img src="preview.jpg" class="w-100 mb-5 mb-md-0" alt="">
+                        </div>
+                        <div class="col-md-6 content">
+                            <span>About Us</span>
+                            <h3>True Healthcare For Your Family</h3>
+                            <p>With years of experience, they are both knowledgeable and thorough in their approach. You
+                                can trust that you will be in gentle and capable hands during your visit.</p>
+                            <a href="appoint.html" class="link-btn">Make Appointment</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="service" id="service">
+                <h1 class="heading">Our Services</h1>
+                <div class="box-container container">
+                    <div class="box">
+                        <img src="download-removebg-preview (1).png" alt="">
+                        <h3>Dental Cleaning</h3>
+                        <p>Our dental cleaning services ensure your teeth are free from plaque and tartar, promoting a
+                            healthy smile and preventing gum disease.</p>
+                    </div>
+                    <div class="box">
+                        <img src="images-removebg-preview (2).png" alt="">
+                        <h3>Cosmetic Dentistry</h3>
+                        <p>Enhance your smile with our cosmetic dentistry services, including teeth whitening, veneers,
+                            and smile makeovers.</p>
+                    </div>
+                    <div class="box">
+                        <img src="unnamed-removebg-preview.png" alt="">
+                        <h3>Orthodontics</h3>
+                        <p>We offer orthodontic treatments such as braces and aligners to straighten your teeth and
+                            improve your bite.</p>
+                    </div>
+                    <div class="box">
+                        <img src="images-removebg-preview.png" alt="">
+                        <h3>Root Canal Treatment</h3>
+                        <p>Our root canal treatments are performed with precision and care to save your natural teeth
+                            and relieve pain.</p>
+                    </div>
+                    <div class="box">
+                        <img src="c63e10d5409dc572ce3f0b6dfad6f257-removebg-preview.png" alt="">
+                        <h3>Dental Implants</h3>
+                        <p>We provide durable and natural-looking dental implants to replace missing teeth and restore
+                            your smile.</p>
+                    </div>
+                    <div class="box">
+                        <img src="images-removebg-preview (1).png" alt="">
+                        <h3>Pediatric Dentistry</h3>
+                        <p>Our pediatric dentistry services ensure your children receive gentle and effective dental
+                            care in a friendly environment.</p>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <section class="process">
+                <h1 class="heading">Work Process</h1>
+                <div class="box-container container">
+                    <div class="box">
+                        <img src="images-removebg-preview (3).png" alt="Cosmetic Dentistry">
+                        <h3>Cosmetic Dentistry</h3>
+                        <p>Transform your smile with our advanced cosmetic dentistry services, offering teeth whitening,
+                            veneers, and more. Achieve the radiant, confident smile you've always desired.</p>
+                    </div>
+                    <div class="box">
+                        <img src="ae299c76-5416-436e-af3c-a481d5f306ce-removebg-preview.png" alt="Dental Implants">
+                        <h3>Dental Implants</h3>
+                        <p>Replace missing teeth with our state-of-the-art dental implants, providing a natural and
+                            durable solution for restoring your smile.</p>
+                    </div>
+                    <div class="box">
+                        <img src="136532762-vector-of-funny-pedriatic-dentistry-with-giraffe-and-tooth-logo-design-eps-format-removebg-preview.png"
+                            alt="Pediatric Dentistry">
+                        <h3>Pediatric Dentistry</h3>
+                        <p>Ensure your child's oral health with our specialized pediatric dentistry services, offering
+                            gentle and effective dental care for children of all ages.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!DOCTYPE html>
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Dental Videos</title>
+                <link rel="stylesheet" href="styles.css">
+            </head>
+
+            <body>
+                <section class="guidence">
+                    <h2>video guidence</h2>
+                    <div class="video-grid1">
+                        <div class="video-card">
+                            <video src="WhatsApp Video 2024-06-28 at 00.29.51_ade9cda9.mp4" controls></video>
+                            <div class="description">
+                                <h3>Two stage Implants</h3>
+                                <p>Dental two-stage implants are a procedure where the implant is first placed into the
+                                    jawbone and allowed to integrate before a second surgery attaches the abutment and
+                                    crown</p>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <video src="cleaning.mp4" controls></video>
+                            <div class="description">
+                                <h3>Tooth Decay</h3>
+                                <p>Dental tooth decay is the process where acids produced by bacteria erode the enamel,
+                                    leading to cavities. If untreated, it can progress to deeper layers of the tooth,
+                                    causing pain, infection, and potential tooth loss.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-grid2">
+                        <div class="video-card">
+                            <video src="WhatsApp Video 2024-06-29 at 12.09.16_5e2a4f630.mp4" controls></video>
+                            <div class="description">
+                                <h3>Orthodontics</h3>
+                                <p>Orthodontics is a dental specialty focusing on diagnosing, preventing, and correcting
+                                    misaligned teeth and jaws. It often involves using braces, aligners, and other
+                                    appliances to achieve a straight, functional, and aesthetically pleasing smile.</p>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <video src="root treatment.mp4" controls></video>
+                            <div class="description">
+                                <h3>Root Canal Treatment</h3>
+                                <p>Root canal treatment is a dental procedure that involves removing infected or damaged
+                                    pulp from the inside of a tooth, cleaning and disinfecting the area, and then
+                                    filling and sealing it. This process saves the tooth from extraction and alleviates
+                                    pain while restoring its function.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+
+
+
+                <section class="satisfied-clients">
+                    <h2>What Our Clients Say</h2>
+                    <div class="client-container">
+                        <div class="client-card" data-aos="fade-up">
+                            <img src="satisfied-patient-showing-her-perfect-smile-after-treatment-in-a-dentist-clinic-1024x684.jpg"
+                                alt="Client 1" class="client-photo">
+                            <p class="client-message">"Excellent service and very friendly staff!"</p>
+                            <p class="client-name">Zaha Hadid </p>
+                            <div class="rating">
+                                <span>★★★★★</span>
+                                <span>4.8</span>
+                            </div>
+                        </div>
+                        <div class="client-card" data-aos="fade-up" data-aos-delay="100">
+                            <img src="shutterstock_695447146.jpg" alt="Client 2" class="client-photo">
+                            <p class="client-message">"A wonderful experience. Highly recommended!"</p>
+                            <p class="client-name">Jane Smith</p>
+                            <div class="rating">
+                                <span>★★★★★</span>
+                                <span>4.9</span>
+                            </div>
+                        </div>
+                        <div class="client-card" data-aos="fade-up" data-aos-delay="200">
+                            <img src="shutterstock_144115594-1.jpg" alt="Client 3" class="client-photo">
+                            <p class="client-message">"Professional and efficient. Very satisfied!"</p>
+                            <p class="client-name">Jhon Doe</p>
+                            <div class="rating">
+                                <span>★★★★☆</span>
+                                <span>4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </body>
+
+            </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Contact Us</h3>
+                        <div class="contact-info">
+                            <p><i class="fas fa-map-marker-alt"></i> 123 Street Name, City, Country</p>
+                            <p><i class="fas fa-phone"></i> +123 456 7890</p>
+                            <p><i class="fas fa-envelope"></i> example@example.com</p>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Our Location</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> Find us on Google Maps</p>
+                        <a href="https://www.google.com/maps" target="_blank"><i class="fas fa-map-marked-alt"></i> View
+                            Map</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+<script>
+     document.addEventListener('DOMContentLoaded', (event) => {
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const signupModal = document.getElementById('signupModal');
+        const loginClose = document.getElementById('loginClose');
+        const signupClose = document.getElementById('signupClose');
+        const navLinks = document.querySelector('.nav-links');
+        const menuToggle = document.querySelector('.menu-toggle');
+
+        loginBtn.onclick = function () {
+            loginModal.style.display = "block";
+        }
+
+        signupBtn.onclick = function () {
+            signupModal.style.display = "block";
+        }
+
+        loginClose.onclick = function () {
+            loginModal.style.display = "none";
+        }
+
+        signupClose.onclick = function () {
+            signupModal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == loginModal) {
+                loginModal.style.display = "none";
+            }
+            if (event.target == signupModal) {
+                signupModal.style.display = "none";
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    });
+
+    let menu = document.querySelector('#menu-btn');
+    let navbar = document.querySelector('.header .nav');
+    let header = document.querySelector('.header');
+
+    menu.onclick = () => {
+        menu.classList.toggle('fa-times');
+        navbar.classList.toggle('active');
+    };
+
+    window.onscroll = () => {
+        menu.classList.remove('fa-times');
+        navbar.classList.remove('active');
+
+        if (window.scrollY > 0) {
+            header.classList.add('active');
+        } else {
+            header.classList.remove('active');
+        }
+    };
+
+    var popup = document.getElementById("contactPopup");
+
+    // Get the link that opens the popup
+    var contactLink = document.getElementById("contactLink");
+
+    // Get the <span> element that closes the popup
+    var closeBtn = document.getElementsByClassName("close1")[0];
+
+    // When the user clicks on the contact link, open the popup
+    contactLink.onclick = function (event) {
+        event.preventDefault();
+        popup.style.display = "flex";
+    }
+
+    // When the user clicks on <span> (x), close the popup
+    closeBtn.onclick = function () {
+        popup.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the popup, close it
+    window.onclick = function (event) {
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    }
+
+    // Handle form submission
+    document.getElementById("contactForm").onsubmit = function (event) {
+        event.preventDefault();
+        alert("Form submitted!");
+        popup.style.display = "none";
+    }
+
+   // Loader script
+   window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.querySelector('.loader').classList.add('hidden');
+        document.body.classList.remove('loading');
+    }, 3000); // 3 seconds delay
+});
+            
+   
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
